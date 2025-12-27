@@ -70,7 +70,7 @@ assignment1
 1. コンテナに入ります。
 
    ```bash
-   docker　compose exec php bash
+   docker compose exec php bash
    ```
 
 2. 依存パッケージをインストールします。

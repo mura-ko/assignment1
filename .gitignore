@@ -18,6 +18,7 @@ bootstrap/cache/*
 docker-compose.override.yml
 docker/mysql/data/ca-key.pem
 mysql/data/*.pem
+docker/mysql/data/*
 *.pem
 *.crt
 *.key
