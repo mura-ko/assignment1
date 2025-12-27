@@ -5,35 +5,8 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
-use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Auth\VerificationController;
-
-//メール認証の設定
-Auth::routes([
-    'verify' => true,
-    'reset' => false,
-    'confirm' => false,
-]);
-//メール認証画面
-Route::get('/email/verified-redirect', [HomeController::class, 'redirectAfterVerify'])
-    ->middleware('auth')
-    ->name('verified.redirect');
-Route::get('/email/verify/{id}/{hash}', VerificationController::class)
-    ->middleware(['auth', 'signed'])
-    ->name('verification.verify');
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-//メール認証の再送信
-Route::post('/email/verification-notification', [
-    App\Http\Controllers\Auth\VerificationController::class,
-    'resend'
-])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-//ログイン(post)
-Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 //商品一覧画面
 Route::get('/', [ItemController::class, 'index'])->name('items.index');
